@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-md-12">
+            <a href="{% url 'board.play_random' %}">Play random
+                <span class="glyphicon glyphicon-random" aria-hidden="true"></span>
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            {% include "upload.html" %}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Files list</h2>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>File</th>
+                    <th>Play</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for name in names %}
+                    <tr>
+                        <td>{{ name }}</td>
+                        <td>
+                            <a href="{% url 'board.play' name %}">
+                                <span class="glyphicon glyphicon-play" aria-hidden="true"></span>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{% url 'board.delete' name %}">
+                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}
